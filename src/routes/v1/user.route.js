@@ -6,6 +6,7 @@ const userController = require('../../controllers/user.controller');
 const profileController = require('../../controllers/profile.controller');
 
 const router = express.Router();
+
 router
   .route('/updateGitToken')
   .post(auth(),profileController.updategitToken)
