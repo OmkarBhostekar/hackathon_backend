@@ -12,12 +12,19 @@ const projectSchema =mongoose.Schema(
               type: mongoose.SchemaTypes.ObjectId,
               ref: 'User'
             }
-          ],
+        ],
         title:{
-            type:String,
-            require:true
+            type: String,
+            required: true
         },
-        
+        gitUrl: {
+            type: String,
+            required: true
+        },
+        description: {
+            type: String,
+            required: true
+        },
         stars: {
             type: Number,
             default:0
@@ -29,7 +36,6 @@ const projectSchema =mongoose.Schema(
             }
         ],
         image:String,
-        description:String,
 
     }
 )
