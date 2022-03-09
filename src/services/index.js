@@ -4,4 +4,4 @@ module.exports.tokenService = require('./token.service');
 module.exports.userService = require('./user.service');
 module.exports.profileService = require('./profile.service');
 module.exports.tagService = require('./tag.service');
-
+module.exports.projectService = require('./project.service');
