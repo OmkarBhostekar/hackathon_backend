@@ -11,6 +11,11 @@ const userSchema = mongoose.Schema(
       required: true,
       trim: true,
     },
+    username: {
+      type: String,
+      required: true,
+      trim: true,
+    },
     email: {
       type: String,
       required: true,
@@ -34,6 +39,11 @@ const userSchema = mongoose.Schema(
         }
       },
       private: true, // used by the toJSON plugin
+    },  
+    githubURL: {
+      type: String,
+      required: true,
+      trim: true,
     },
     role: {
       type: String,
