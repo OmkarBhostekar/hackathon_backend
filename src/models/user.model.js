@@ -14,7 +14,6 @@ const userSchema = mongoose.Schema(
     username: {
       type: String,
       required: true,
-      trim: true,
     },
     email: {
       type: String,
@@ -40,11 +39,46 @@ const userSchema = mongoose.Schema(
       },
       private: true, // used by the toJSON plugin
     },  
-    githubURL: {
-      type: String,
-      required: true,
-      trim: true,
+
+    githubUrl: {
+      type: String
     },
+    githubToken: {
+      type: String
+    },
+    firebaseToken: {
+      type: String
+    },
+    linkedInUrl: {
+      type: String
+    },
+    stackOverFlowUrl: {
+      type: String
+    },
+    projects: [
+      {
+        type: mongoose.SchemaTypes.ObjectId,
+        ref: 'Project'
+      }
+    ],
+    skills: [
+      {
+        type: mongoose.SchemaTypes.ObjectId,
+        ref: 'Tag'
+      }
+    ],
+    friends: [
+      {
+        type: mongoose.SchemaTypes.ObjectId,
+        ref: 'User'
+      }
+    ],
+    friend_req: [
+      {
+        type: mongoose.SchemaTypes.ObjectId,
+        ref: 'User'
+      }
+    ],
     role: {
       type: String,
       enum: roles,

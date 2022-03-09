@@ -3,13 +3,30 @@ const auth = require('../../middlewares/auth');
 const validate = require('../../middlewares/validate');
 const userValidation = require('../../validations/user.validation');
 const userController = require('../../controllers/user.controller');
+const profileController = require('../../controllers/profile.controller');
 
 const router = express.Router();
+router
+  .route('/updateGitToken')
+  .post(auth(),profileController.updategitToken)
+router
+  .route('/updateFireToken')
+  .post(auth(),profileController.updatefireToken)
+
+
+  router
+  .route('/profile')
+  .patch(auth(),profileController.updateProfile)
+
+router
+  .route('/profile/:id')
+  .get(auth(),profileController.getProfile)
 
 router
   .route('/')
   .post(auth('manageUsers'), validate(userValidation.createUser), userController.createUser)
   .get(auth('getUsers'), validate(userValidation.getUsers), userController.getUsers);
+
 
 router
   .route('/:userId')
