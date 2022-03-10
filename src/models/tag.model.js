@@ -4,7 +4,7 @@ const { toJSON, paginate } = require('./plugins');
 const tagSchema =mongoose.Schema(
     {
        name:{
-           require:true,
+           required:true,
            type:String
        }
     }

@@ -3,7 +3,17 @@ const { User } = require('../models');
 const ApiError = require('../utils/ApiError');
 
 const getProfile = async (profileId) => {
-        const user = await User.findById(profileId);
+        const user = await User.findById(profileId).populate({
+          path:'skills',
+          model: 'Tag'
+        }).populate({
+          path: 'projects tags',
+          model: 'Project',
+          populate: {
+            path: 'tags',
+            model: 'Tag'
+          }
+        });
         if (!user) {
         throw new ApiError(httpStatus.NOT_FOUND, 'User not found');
         }
@@ -22,6 +32,14 @@ const getProfile = async (profileId) => {
   
   const searchProfile = async (filter, options, keyword) => {
     const result = await User.find({name: { $regex: new RegExp(keyword, 'i') }})
+      .populate({
+        path: 'skills',
+        model: 'Tag'
+      })
+      .populate({
+        path: 'projects',
+        model: 'Project'
+      })
     return result
   };
 

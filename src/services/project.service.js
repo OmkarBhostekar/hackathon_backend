@@ -1,8 +1,9 @@
 const httpStatus = require('http-status');
-const { Project } = require('../models');
+const { User,Project } = require('../models');
 const ApiError = require('../utils/ApiError');
 
 const getProjects = async (filter, options) => {
+    options.populate = 'tags'
     return await Project.paginate(filter, options);
 }
  
@@ -16,7 +17,9 @@ const getProjectDetail = async (projectId) => {
 
 const createProject = async (userId,projectBody) => {
     projectBody.owner = userId
-    return Project.create(projectBody);
+    const project = await Project.create(projectBody);
+    await User.findByIdAndUpdate(userId,{ $push: { projects: project.id } })
+    return project
 }
 
 const updateProject = async (projectId, updateBody) => {

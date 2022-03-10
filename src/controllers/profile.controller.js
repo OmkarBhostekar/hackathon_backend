@@ -2,7 +2,7 @@ const httpStatus = require('http-status');
 const pick = require('../utils/pick');
 const ApiError = require('../utils/ApiError');
 const catchAsync = require('../utils/catchAsync');
-const { profileService } = require('../services');
+const { profileService,userService } = require('../services');
 
 const getProfile = catchAsync(async (req, res) => {
     const pId = req.params.id
